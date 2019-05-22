@@ -1,0 +1,14 @@
+Scripts/
+include/
+lib/
+.DS_STORE
+.Python
+*.py[cod]
+Scripts/
+include/
+lib/
+.DS_STORE
+.Python
+*.py[cod]
+tcl
+tcl/
