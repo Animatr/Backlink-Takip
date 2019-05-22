@@ -42,7 +42,6 @@
     <tr class="{% if todays_date <= object.end_date|date:"Y-m-d" %}table-success{% elif todays_date > object.end_date|date:"Y-m-d" %}table-secondary{% endif %}">
       <th scope="row">{{ object.pk }}</th>
       <td><a href="{{ object.link }}" title="{{ object.link }}">{{ object.keyword }}</a></td>
-      <td>{{ object.domain }}</td>
       <td>{{ object.source }}</td>
 
       <td>{{ object.created_date|date:"Y-m-d" }}</td>
