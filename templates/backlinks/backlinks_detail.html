@@ -28,7 +28,6 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Link</th>
-      <th scope="col">Domain</th>
       <th scope="col">Kaynak</th>
 
       <th scope="col">Eklenme Tarihi</th>
@@ -49,7 +48,7 @@
       <td>{{ object.created_date|date:"Y-m-d" }}</td>
       <td>{{ object.end_date|date:"Y-m-d" }}<br/><small>{% if todays_date > object.end_date|date:"Y-m-d" %}Süre Doldu{% else %}{{ object.end_date|timeuntil }} Kaldı{% endif %}</small></td>
 
-          <td><a href="/sil/{{ object.pk }}" title="Backlink'i Sil">Sil</a> | <a href="{{ object.source}}" title="{{ object.keyword }}">Linke Git</a></td>
+      <td><a href="/sil/{{ object.pk }}" title="Backlink'i Sil"><img src="{% static 'icon/baseline-delete-24px.svg' %}" title="Sil" alt="Sil"/></a> | <a href="{{ object.source}}" title="{{ object.keyword }}"><img src="{% static 'icon/baseline-visibility-24px.svg' %}" title="Sayfaya Git" alt="Sayfaya Git" /></a></td>
     </tr>
 
 
