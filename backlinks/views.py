@@ -49,17 +49,18 @@ class BacklinkDetailView(LoginRequiredMixin,DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        page = requests.get(self.object.source)
-        soup = BeautifulSoup(page.text, 'html.parser')
-        backlink = soup.find_all("a", href=lambda href: href and self.object.link in href)
-        superlinks = []
+        try:
+            page = requests.get(self.object.source)
+            soup = BeautifulSoup(page.text, 'html.parser')
+            backlink = soup.find_all("a", href=lambda href: href and self.object.link in href)
+            superlinks = []
 
-        for link in backlink:
-            links = link.get('href')
-            names = link.contents[0]
-            superlinks.append(links)
-            superlinks.append(names)
+            for link in backlink:
+                links = link.get('href')
+                names = link.contents[0]
+                superlinks.append(links)
+                superlinks.append(names)
 
-        context['results'] = superlinks
+            context['results'] = superlinks
 
         return context
