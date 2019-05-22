@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="my-3 p-3 bg-white rounded box-shadow">
+
+<form method="post">{% csrf_token %}
+    <p>Aşağıdaki backlinki silmek istediğinizden emin misiniz?
+      <br/><br/> "{{ object }}"?</p>
+    <input type="submit"  class="btn btn-danger" value="Evet Silme İşlemini Tamamla">  <a class="btn btn-primary" href="/" role="button">Vazgeç</a>
+</form>
+</div>
+
+{% endblock content %}

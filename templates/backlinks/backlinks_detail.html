@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+      <div class="my-3 p-3 bg-white rounded box-shadow">
+        <a class="btn btn-primary" href="/ekle/" role="button"">Yeni Ekle</a>
+        <br/><hr><br/>
+        <h6 class="border-bottom border-gray pb-2 mb-0">Backlink Detay</h6>
+
+        <br/>
+
+        {% if results %}
+        <div class="alert alert-success" role="alert">
+          Backlink canlı durumda!
+        </div>
+        {% else %}
+        <div class="alert alert-danger" role="alert">
+              Backlink'e ulaşamadık. Lütfen sayfayı elle kontrol ediniz. Kontrol edilecek sayfaya <a href="{{ object.source}}" title="{{ object.keyword }}">buraya</a> tıklayarak gidebilirsiniz..
+        </div>
+        {% endif %}
+
+
+        <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Link</th>
+      <th scope="col">Domain</th>
+      <th scope="col">Kaynak</th>
+
+      <th scope="col">Eklenme Tarihi</th>
+      <th scope="col">Bitiş Tarihi</th>
+
+      <th scope="col">İşlem</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% now "Y-m-d" as todays_date %}
+
+    <tr class="{% if todays_date <= object.end_date|date:"Y-m-d" %}table-success{% elif todays_date > object.end_date|date:"Y-m-d" %}table-secondary{% endif %}">
+      <th scope="row">{{ object.pk }}</th>
+      <td><a href="{{ object.link }}" title="{{ object.link }}">{{ object.keyword }}</a></td>
+      <td>{{ object.domain }}</td>
+      <td>{{ object.source }}</td>
+
+      <td>{{ object.created_date|date:"Y-m-d" }}</td>
+      <td>{{ object.end_date|date:"Y-m-d" }}<br/><small>{% if todays_date > object.end_date|date:"Y-m-d" %}Süre Doldu{% else %}{{ object.end_date|timeuntil }} Kaldı{% endif %}</small></td>
+
+          <td><a href="/sil/{{ object.pk }}" title="Backlink'i Sil">Sil</a> | <a href="{{ object.source}}" title="{{ object.keyword }}">Linke Git</a></td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+{% if object.description %}
+<hr/>
+<strong>Ek Bilgi</strong>
+<p>{{ object.description| safe }}</p>
+<hr/>
+{% endif %}
+
+{% if results %}
+<strong> Sayfada taranan backlinkler:</strong>
+{% endif %}
+  <p>
+<ul>
+{% for result in results %}
+<li>{{ result }}</li>
+{% endfor %}
+</ul>
+  </p>
+
+      </div>
+
+
+
+
+{% endblock content %}

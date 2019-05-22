@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+      <div class="my-3 p-3 bg-white rounded box-shadow">
+        <a class="btn btn-primary" href="/ekle/" role="button"">Yeni Ekle</a>
+        <br/><hr><br/>
+        <h6 class="border-bottom border-gray pb-2 mb-0">Backlinkler</h6>
+        <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Link</th>
+
+      <th scope="col">Kaynak</th>
+
+      <th scope="col">Eklenme Tarihi</th>
+      <th scope="col">Bitiş Tarihi</th>
+
+      <th scope="col">İşlem</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for backlink in object_list %}
+    {% now "Y-m-d" as todays_date %}
+
+    <tr class="{% if todays_date <= backlink.end_date|date:"Y-m-d" %}table-success{% elif todays_date > backlink.end_date|date:"Y-m-d" %}table-secondary{% endif %}">
+      <th scope="row">{{ backlink.pk }}</th>
+      <td><a href="/detay/{{ backlink.pk }}" title="{{ backlink.link }}">{{ backlink.keyword }}</a></td>
+
+      <td>{{ backlink.source }}</td>
+
+      <td>{{ backlink.created_date|date:"Y-m-d" }}</td>
+      <td>{{ backlink.end_date|date:"Y-m-d" }}<br/><small>{% if todays_date > backlink.end_date|date:"Y-m-d" %}Süre Doldu{% else %}{{ backlink.end_date|timeuntil }} Kaldı{% endif %}</small></td>
+
+          <td><a href="/sil/{{ backlink.pk }}" title="Backlink'i Sil">Sil</a> | <a href="{{ backlink.source}}" title="{{ backlink.keyword }}">Linke Git</a></td>
+    </tr>
+
+    {% endfor %}
+
+  </tbody>
+</table>
+
+{% if is_paginated %}
+<ul class="pagination">
+{% if page_obj.has_previous %}
+    <li>
+        <span><a href="?page={{ page_obj.previous_page_number }}"> << Önceki Sayfa </a> </span>
+    </li>
+{% endif %}
+    <li class="">
+        <span>Şu anda {{ page_obj.number }}. sayfadasınız. Toplam {{ page_obj.paginator.num_pages }} sayfa var..</span>
+    </li>
+{% if page_obj.has_next %}
+    <li>
+        <span> <a href="?page={{ page_obj.next_page_number }}"> Sonraki Sayfa >></a></span>
+    </li>
+{% endif %}
+</ul>
+{% else %}
+    
+{% endif %}
+
+
+      </div>
+
+
+
+
+{% endblock content %}
