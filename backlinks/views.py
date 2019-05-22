@@ -64,7 +64,7 @@ class BacklinkDetailView(LoginRequiredMixin,DetailView):
                 superlinks.append(names)
         except ConnectionError as e:    # This is the correct syntax
             superlinks = []
-            print e
+            print(e)
             r = "No response"
 
         context['results'] = superlinks
