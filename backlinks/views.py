@@ -13,6 +13,8 @@ import requests
 from .forms import YeniForm
 from .models import Backlinks
 import re
+from requests.exceptions import ConnectionError
+
 
 class LinkDelete(LoginRequiredMixin,DeleteView):
     model = Backlinks
@@ -60,7 +62,11 @@ class BacklinkDetailView(LoginRequiredMixin,DetailView):
                 names = link.contents[0]
                 superlinks.append(links)
                 superlinks.append(names)
+        except ConnectionError as e:    # This is the correct syntax
+            superlinks = []
+            print e
+            r = "No response"
 
-            context['results'] = superlinks
+        context['results'] = superlinks
 
         return context
