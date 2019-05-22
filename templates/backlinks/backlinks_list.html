@@ -36,7 +36,7 @@
       <td>{{ backlink.created_date|date:"Y-m-d" }}</td>
       <td>{{ backlink.end_date|date:"Y-m-d" }}<br/><small>{% if todays_date > backlink.end_date|date:"Y-m-d" %}Süre Doldu{% else %}{{ backlink.end_date|timeuntil }} Kaldı{% endif %}</small></td>
 
-          <td><a href="/sil/{{ backlink.pk }}" title="Backlink'i Sil">Sil</a> | <a href="{{ backlink.source}}" title="{{ backlink.keyword }}">Linke Git</a></td>
+          <td><a href="/sil/{{ backlink.pk }}" title="Backlink'i Sil"><img src="{% static 'icon/baseline-delete-24px.svg' %}" title="Sil" alt="Sil"/></a> | <a href="{{ backlink.source}}" title="{{ backlink.keyword }}">Linke Git</a></td>
     </tr>
 
     {% endfor %}
@@ -61,7 +61,7 @@
 {% endif %}
 </ul>
 {% else %}
-    
+
 {% endif %}
 
 
