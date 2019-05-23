@@ -25,7 +25,7 @@ SECRET_KEY = '5xm_op9koees!)jd*opi47fp17h)y=0e-kt1o4nbl28*xtnh&t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['backlinktakip.com','http://backlinktakip.com/']
+ALLOWED_HOSTS = ['backlinktakip.com','www.backlinktakip.com']
 
 
 # Application definition
