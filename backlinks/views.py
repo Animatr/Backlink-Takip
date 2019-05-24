@@ -23,7 +23,6 @@ class LinkDelete(LoginRequiredMixin,DeleteView):
 
 class LinkCreate(LoginRequiredMixin,CreateView):
     model = Backlinks
-    #fields = ['link','source','keyword','created_date','end_date','domain','description']
     form_class = YeniForm
     success_url = "/"
     login_url = "/hesap/login/"
