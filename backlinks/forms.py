@@ -10,7 +10,3 @@ class YeniForm(forms.ModelForm):
             'created_date': DatePickerInput(format='%Y-%m-%d %H:%M:%S'), # default date-format %m/%d/%Y will be used
             'end_date': DatePickerInput(format='%Y-%m-%d %H:%M:%S'), # specify date-frmat
         }
-
-    def clean(self, *args, **kwargs):
-        cleaned_data = super(YeniForm, self).clean(*args,**kwargs)
-        return cleaned_data
