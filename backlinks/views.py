@@ -2,9 +2,6 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
-from backlinktakip.mixins import (
-    LoginRequiredMixin,
-    )
 from django.views.generic import TemplateView
 from django import template
 from bs4 import BeautifulSoup
@@ -14,14 +11,18 @@ from .forms import YeniForm
 from .models import Backlinks
 import re
 from requests.exceptions import ConnectionError
+from django.contrib.auth.decorators import login_required
 
+from django.utils.decorators import method_decorator
 
-class LinkDelete(LoginRequiredMixin,DeleteView):
+@login_required
+class LinkDelete(DeleteView):
     model = Backlinks
     success_url = "/"
     login_url = "/hesap/login/"
 
-class LinkCreate(LoginRequiredMixin,CreateView):
+@login_required
+class LinkCreate(CreateView):
     model = Backlinks
     form_class = YeniForm
     success_url = "/"
@@ -32,8 +33,8 @@ class LinkCreate(LoginRequiredMixin,CreateView):
         return super().form_valid(form)
 
 
-
-class BacklinkListView(LoginRequiredMixin,ListView):
+@login_required
+class BacklinkListView(ListView):
     model = Backlinks
     paginate_by = 25
     login_url = "/hesap/login/"
@@ -48,7 +49,8 @@ class BacklinkListView(LoginRequiredMixin,ListView):
         context = super().get_context_data(**kwargs)
         return context
 
-class BacklinkDetailView(LoginRequiredMixin,DetailView):
+@login_required
+class BacklinkDetailView(DetailView):
     model = Backlinks
     login_url = "/hesap/login/"
 
