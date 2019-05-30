@@ -28,9 +28,9 @@ class LinkCreate(LoginRequiredMixin,CreateView):
     login_url = "/hesap/login/"
 
     def save_model(self, request, obj, form, change):
-        if getattr(obj, 'author', None) is None:
-            obj.author = request.user
-        obj.save()
+            if getattr(obj, 'author', None) is None:
+                obj.author = request.user
+            obj.save()
 
 
 class BacklinkListView(LoginRequiredMixin,ListView):
