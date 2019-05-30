@@ -15,7 +15,7 @@ class Backlinks(models.Model):
     end_date = models.DateTimeField(default=timezone.now,verbose_name="Bitiş Tarihi")
     description = models.TextField(null=True,blank=True,verbose_name="Ek Bilgi")
     source = models.URLField(max_length=100,verbose_name="Kaynak")
-    author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True,blank=True,)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True,blank=True)
 
 
     def __str__(self):
