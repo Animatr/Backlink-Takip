@@ -15,13 +15,13 @@ from django.contrib.auth.decorators import login_required
 
 from django.utils.decorators import method_decorator
 
-@login_required
+@login_required(redirect_field_name='home', login_url=None)
 class LinkDelete(DeleteView):
     model = Backlinks
     success_url = "/"
     login_url = "/hesap/login/"
 
-@login_required
+@login_required(redirect_field_name='home', login_url=None)
 class LinkCreate(CreateView):
     model = Backlinks
     form_class = YeniForm
@@ -33,7 +33,7 @@ class LinkCreate(CreateView):
         return super().form_valid(form)
 
 
-@login_required
+@login_required(redirect_field_name='home', login_url=None)
 class BacklinkListView(ListView):
     model = Backlinks
     paginate_by = 25
@@ -49,7 +49,7 @@ class BacklinkListView(ListView):
         context = super().get_context_data(**kwargs)
         return context
 
-@login_required
+@login_required(redirect_field_name='home', login_url=None)
 class BacklinkDetailView(DetailView):
     model = Backlinks
     login_url = "/hesap/login/"
