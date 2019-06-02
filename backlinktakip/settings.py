@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '5xm_op9koees!)jd*opi47fp17h)y=0e-kt1o4nbl28*xtnh&t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['www.backlinktakip.com','backlinktakip.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -139,9 +139,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "staticfiles")
+STATIC_ROOT = os.path.join("static_cdn", "staticfiles")
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media")
+MEDIA_ROOT = os.path.join("static_cdn", "media")
 
 TEMPUS_DOMINUS_LOCALIZE = True
 LOGIN_REDIRECT_URL = '/'
