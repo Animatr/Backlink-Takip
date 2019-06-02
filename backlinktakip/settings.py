@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '5xm_op9koees!)jd*opi47fp17h)y=0e-kt1o4nbl28*xtnh&t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.backlinktakip.com','backlinktakip.com']
 
 
 # Application definition
