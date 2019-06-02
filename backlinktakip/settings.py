@@ -25,7 +25,7 @@ SECRET_KEY = '5xm_op9koees!)jd*opi47fp17h)y=0e-kt1o4nbl28*xtnh&t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['backlinktakip.com','www.backlinktakip.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'bootstrap_datepicker_plus',
     'bootstrap4',
     'django.contrib.admin',
+    'django_userforeignkey',
+    'hesaplar.apps.HesaplarConfig', # new
+
 
 ]
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
@@ -58,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_userforeignkey.middleware.UserForeignKeyMiddleware',
 ]
 
 ROOT_URLCONF = 'backlinktakip.urls'

@@ -1,9 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
-from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import pre_save, post_save
+from django_userforeignkey.models.fields import UserForeignKey
 
 # Create your models here.
 
@@ -15,7 +13,7 @@ class Backlinks(models.Model):
     end_date = models.DateTimeField(default=timezone.now,verbose_name="Bitiş Tarihi")
     description = models.TextField(null=True,blank=True,verbose_name="Ek Bilgi")
     source = models.URLField(max_length=100,verbose_name="Kaynak")
-    author = models.OneToOneField(User, on_delete=models.CASCADE,blank=True)
+    author = UserForeignKey(auto_user_add=True, verbose_name="The user that is automatically assigned", related_name="mymodels")
 
 
     def __str__(self):

@@ -1,0 +1,48 @@
+{% extends "baser.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<main role="main" class="container">
+
+    <form class="form-signin" method="post" style="margin-top:150px;">
+      {% csrf_token %}
+
+      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Yeni Kayıt</h1>
+      {% for hidden_field in form.hidden_fields %}
+        {{ hidden_field }}
+      {% endfor %}
+
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+          {% for error in form.non_field_errors %}
+            {{ error }}
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="form-group">
+        <input type="text" name="username" autofocus="" class="form-control" required="" id="id_username" placeholder="Kullanıcı Adınız">
+        <br/><span class="helptext form-control"><small>Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.</small></span>
+      </div>
+      <div class="form-group">
+        <input type="password" name="password1" class="form-control" required="" id="id_password1" placeholder="Parolanız">
+        <span class="helptext form-control"><small><ul><li>Parolanız diğer kişisel bilgileriniz ile çok benzer olamaz.</li><li>Parolanız en az 8 karakter içermek zorunda.</li><li>Parolanız genellikle kullanılan bir parola olamaz.</li><li>Parolanız tamamıyla sayısal olamaz.</li></ul></small></span>
+      </div>
+      <div class="form-group">
+        <input type="password" name="password2" class="form-control" required="" id="id_password2" placeholder="Parola Onay">
+        <span class="helptext form-control"><small>Doğrulama için önceki gibi aynı parolayı girin.</small></span>
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" class="form-control" required="" id="email" placeholder="Mail Adresiniz">
+        <span class="helptext form-control"><small>Hesabınıza bağlamak istediğiniz mail adresinizi giriniz..</small></span>
+      </div>
+
+
+<button class="btn btn-lg btn-primary btn-block" type="submit">Kayıt</button>
+
+      <p><small><a href="/hesap/password_reset/" title="Parolamı Unuttum">Parolamı Unuttum</a></small></p>
+      <p class="mt-5 mb-3 text-muted">Backlink Takip Sistemi <br/> coded by <a href="https://www.r10.net/members/50591-mckoc.html" title="Python Programlama">mckoc</a>@r10 <br/> Powered By Python</p>
+   </form>
+    </main>
+{% endblock content %}

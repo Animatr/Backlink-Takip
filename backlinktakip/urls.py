@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic.base import TemplateView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('backlinks.urls'), name="posts"),
+    path('hesap/', include('hesaplar.urls')), # new
     path('hesap/', include('django.contrib.auth.urls')), # new
 
 
