@@ -7,4 +7,4 @@ class AuthorAdmin(admin.Backlinks):
   date_hierarchy = 'created_date'
   list_display = ('link','keyword','author')
 
-admin.site.register(Backlinks)
+admin.site.register(Backlinks, AuthorAdmin)
