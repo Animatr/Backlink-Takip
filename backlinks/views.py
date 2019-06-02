@@ -27,20 +27,15 @@ class LinkCreate(LoginRequiredMixin,CreateView):
     success_url = "/"
     login_url = "/hesap/login/"
 
-
-
-
-
 class BacklinkListView(LoginRequiredMixin,ListView):
     model = Backlinks
     paginate_by = 25
     login_url = "/hesap/login/"
 
-
     def get_queryset(self, *args, **kwargs):
         user = self.request.user
         qs = super(BacklinkListView, self).get_queryset(**kwargs)
-        qs = Backlinks.objects.filter(author    =user).order_by('-created_date')
+        qs = Backlinks.objects.filter(author=user).order_by('-created_date')
         return qs
 
     def get_context_data(self, **kwargs):
@@ -51,8 +46,7 @@ class BacklinkDetailView(LoginRequiredMixin,DetailView):
     model = Backlinks
     login_url = "/hesap/login/"
 
-
-    def get_context_data(self, **kwargs):        
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         try:
             page = requests.get(self.object.source)

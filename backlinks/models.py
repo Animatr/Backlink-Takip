@@ -15,7 +15,6 @@ class Backlinks(models.Model):
     source = models.URLField(max_length=100,verbose_name="Kaynak")
     author = UserForeignKey(auto_user_add=True, verbose_name="The user that is automatically assigned", related_name="mymodels")
 
-
     def __str__(self):
         return self.link
 
