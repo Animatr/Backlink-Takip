@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Backlinks
+import models
 
 
 @admin.register(models.Backlinks)
