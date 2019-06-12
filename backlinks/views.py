@@ -7,13 +7,11 @@ from backlinktakip.mixins import (
     )
 from django.views.generic import TemplateView
 from django import template
-from bs4 import BeautifulSoup
 import requests
 # Create your views here.
 from .forms import YeniForm
 from .models import Backlinks
 import re
-from requests.exceptions import ConnectionError
 
 
 class LinkDelete(LoginRequiredMixin,DeleteView):
@@ -48,22 +46,4 @@ class BacklinkDetailView(LoginRequiredMixin,DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        try:
-            page = requests.get(self.object.source)
-            soup = BeautifulSoup(page.text, 'html.parser')
-            backlink = soup.find_all("a", href=lambda href: href and self.object.link in href)
-            superlinks = []
-
-            for link in backlink:
-                links = link.get('href')
-                names = link.contents[0]
-                superlinks.append(links)
-                superlinks.append(names)
-        except ConnectionError as e:    # This is the correct syntax
-            superlinks = []
-            print(e)
-            r = "No response"
-
-        context['results'] = superlinks
-
         return context

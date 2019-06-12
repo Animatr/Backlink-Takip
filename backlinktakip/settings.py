@@ -26,7 +26,7 @@ SECRET_KEY = '5xm_op9koees!)jd*opi47fp17h)y=0e-kt1o4nbl28*xtnh&t'
 DEBUG = True
 
 ALLOWED_HOSTS = ['www.backlinktakip.com','backlinktakip.com']
-
+#ALLOWED_HOSTS = []
 
 # Application definition
 
